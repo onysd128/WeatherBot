@@ -21,6 +21,7 @@ def AddUser(message):
     db.commit()
 
 def AddMessage(message):
+    print(f'{message.from_user.first_name} {message.from_user.last_name} ({message.chat.id}): {message.text}')
     db = sqlite3.connect('weatherbot.db')
     sql = db.cursor()
     sql.execute("INSERT INTO messages VALUES(?,?,?,?,?)", (message.id, message.chat.id, message.from_user.first_name,message.text,str(datetime.now())[:19]))
